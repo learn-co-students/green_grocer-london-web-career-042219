@@ -1,5 +1,9 @@
-def consolidate_cart(cart)
-  # code here
+def consolidate_cart(items)
+  items_keys = items.flat_map(&:keys)
+  
+  new_list = items.inject(:merge).map{|key, value| { key => value.merge(count: items_keys.count(key)) }}
+
+  new_list.inject(:merge!)
 end
 
 def apply_coupons(cart, coupons)
